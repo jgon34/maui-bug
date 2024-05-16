@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <CollectionView x:Name="ResultList"
+                        Grid.Row="0"
+                        SelectionMode="Single"
+                        IsGrouped="True"
+                        MinimumHeightRequest="150"
+                        MaximumHeightRequest="300"
+                        SelectionChanged="ResultList_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate >
+                    <VerticalStackLayout>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor"
+                                            Value="LightGreen" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Label Text="{Binding}" 
+                               FontSize="14" 
+                               VerticalTextAlignment="Center"
+                               Margin="25,7,7,7" />
+
+                        <BoxView HeightRequest="1" 
+                         BackgroundColor="Black" />
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1"
+                x:Name="CounterBtn"
+                Text="Click me" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="CounterBtn_Clicked"
+                HorizontalOptions="Fill" />
+    </Grid>
+
+</ContentPage>
